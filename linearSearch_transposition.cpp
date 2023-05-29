@@ -55,10 +55,11 @@ void display(struct Array arr)
     cout << endl;
 }
 
-int linearSearch(struct Array arr, int key){
-    for(int i=0;i<arr.length;i++){
-        if(key == arr.A[i]){
-            return i;
+int linearSearchT(struct Array *arr, int key){
+    for(int i=0;i<arr->length;i++){
+        if(key == arr->A[i]){
+            swap(arr->A[i], arr->A[i-1]);
+            return i-1;
         }
     }
     return -1;
@@ -67,7 +68,8 @@ int main()
 {
     struct Array a = {{2, 4, 6, 8, 10}, 10, 5};
     display(a);
-    cout<<linearSearch(a, 88)<<endl;
-    cout<<linearSearch(a, 8)<<endl;
+    cout<<linearSearchT(&a, 88)<<endl;
+    cout<<linearSearchT(&a, 8)<<endl;
+    display(a);
     return 0;
 }
